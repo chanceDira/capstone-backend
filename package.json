@@ -1,0 +1,32 @@
+{
+  "name": "capstone-backend",
+  "version": "1.0.0",
+  "description": "Backend for my brand and blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chanceDira/capstone-backend.git"
+  },
+  "author": "Chance Desire IRADUKUNDA",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chanceDira/capstone-backend/issues"
+  },
+  "homepage": "https://github.com/chanceDira/capstone-backend#readme",
+  "dependencies": {
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.16.7",
+    "express": "^4.17.2",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@babel/node": "^7.16.8",
+    "@babel/plugin-transform-runtime": "^7.16.8",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.16.8",
+    "@babel/runtime": "^7.16.7"
+  }
+}
