@@ -2,7 +2,8 @@
   "name": "capstone-backend",
   "version": "1.0.0",
   "description": "Backend for my brand and blog",
-  "main": "index.js",
+  "main": "app.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,6 +20,7 @@
   "dependencies": {
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.7",
+    "body-parser": "^1.19.1",
     "express": "^4.17.2",
     "uuid": "^8.3.2"
   },
