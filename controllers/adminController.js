@@ -34,7 +34,44 @@ const getBlogs = async (req,res) => {
     }
 }
 
+const deleteBlogPost = async (req , res) => {
+    try {
+        let id = req.body.id;
+        let query = {_id: id};
+        if(id.trim() === '' || id.trim() === null){
+            res.status(400).json({'error' : "Bad request"});
+            return;
+        }
+        let data = await Blogs.deleteOne(query);
+        if(data.deletedCount === 1 ){
+            res.status(200).json({"success" : "deleted"});
+            return;
+        }
+        else{
+            res.status(404).json({"error" : 'we don\'t have that blog'});
+            return;
+        }
+    } catch (error) {  
+        console.log(error)
+        res.status(500).json({"error" : 'Server error'});        
+    }
+}
 
-// exports.getBlogs = getBlogs;
+const updateBlogPost = async (req , res) => {
+    const { blogImage, title, subTitle, blogPost } =  req.body;
+    
+    try {
+        let id = req.body.id;
+        let data = await Blogs.findOneAndUpdate(
+            {_id : id},
+            {$set:{ blogImage, title, subTitle, blogPost } });
+            if(data){
+                res.status(200).json({"success" : "Updated" });
+                return;
+            }
+    } catch (error) {  
+        res.status(500).json({"error" : 'Server error'});        
+    }
+}
 
-export default { getBlogs,createNewBlogPost }
+export default { getBlogs, createNewBlogPost, deleteBlogPost, updateBlogPost }
