@@ -18,7 +18,7 @@ app.use(express.json());
 app.use('/api/v1/admin', admin);
 app.use('/api/v1/users', users);
 
-app.listen(5000, () => {
-    console.log("Server is running on port 5000");
+app.listen(6700, () => {
+    console.log("Server is running on port 6700");
 })
 
