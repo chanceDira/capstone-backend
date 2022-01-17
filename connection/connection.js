@@ -10,3 +10,4 @@ db.once('open' , function() {
     console.log('Connected');
 }) 
 
+export default db

@@ -1,38 +1,7 @@
 import { v4 as uuid } from 'uuid';
-// import db from '../connection/connection.js'
+import db from '../connection/connection.js'
 import Blogs from '../models/blogs.js'
 
-// const blogs = [
-//     {
-//         id:uuid(),
-//         image: "https://cdn.pixabay.com/photo/2021/11/13/23/06/tree-6792528__340.jpg",
-//         title: "How to learn html and css1",
-//         subTitle: "This is a good course the beginner in html and css",
-//         desrciption: "We designed HTML & CSS Is Hard to be the only introduction to HTML and CSS that you’ll ever need. If you put in the effort to read every section and write every code snippet, this tutorial has the potential to replace hundreds or even thousand of dollars worth of online courses and live training."
-//     },
-//     {
-//         id:uuid(),
-//         image: "https://cdn.pixabay.com/photo/2021/11/13/23/06/tree-6792528__340.jpg",
-//         title: "How to learn html and css2",
-//         subTitle: "This is a good course the beginner in html and css",
-//         desrciption: "We designed HTML & CSS Is Hard to be the only introduction to HTML and CSS that you’ll ever need. If you put in the effort to read every section and write every code snippet, this tutorial has the potential to replace hundreds or even thousand of dollars worth of online courses and live training."
-//     },
-//     {
-//         id:uuid(),
-//         image: "https://cdn.pixabay.com/photo/2021/11/13/23/06/tree-6792528__340.jpg",
-//         title: "How to learn html and css3",
-//         subTitle: "This is a good course the beginner in html and css",
-//         desrciption: "We designed HTML & CSS Is Hard to be the only introduction to HTML and CSS that you’ll ever need. If you put in the effort to read every section and write every code snippet, this tutorial has the potential to replace hundreds or even thousand of dollars worth of online courses and live training."
-//     },
-//     {
-//         id:uuid(),
-//         image: "https://cdn.pixabay.com/photo/2021/11/13/23/06/tree-6792528__340.jpg",
-//         title: "How to learn html and css4",
-//         subTitle: "This is a good course the beginner in html and css",
-//         desrciption: "We designed HTML & CSS Is Hard to be the only introduction to HTML and CSS that you’ll ever need. If you put in the effort to read every section and write every code snippet, this tutorial has the potential to replace hundreds or even thousand of dollars worth of online courses and live training."
-//     }
-    
-// ];
 
 
 const createNewBlogPost = async (req , res) => {
@@ -52,8 +21,17 @@ const createNewBlogPost = async (req , res) => {
     }
 }
 
-const getBlogs = (req,res) => {
-    res.json(blogs);
+const getBlogs = async (req,res) => {
+    // res.json(blogs);
+    
+    try {  
+       const data = await Blogs.find({}).limit(4);
+        res.status(200).json(data);
+    }
+    catch(error){
+        console.log(error)
+        res.status(500).json({"message" : "Error"});
+    }
 }
 
 

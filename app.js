@@ -15,10 +15,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.json());
 
-app.use('/api/admin', admin);
+app.use('/api/v1/admin', admin);
 // app.use('/api/users', users);
 
-app.listen(6000, () => {
-    console.log("Server is running on port 6000");
+app.listen(4000, () => {
+    console.log("Server is running on port 4000");
 })
 
