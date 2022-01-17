@@ -1,6 +1,6 @@
 import express from "express";
 import bodyParser from 'body-parser'
-// import users from './routes/users/users.js';
+import users from './routes/users/users.js';
 import admin from './routes/admin/admin.js';
 
 // const express = require("express");
@@ -16,9 +16,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use('/api/v1/admin', admin);
-// app.use('/api/users', users);
+app.use('/api/v1/users', users);
 
-app.listen(4000, () => {
-    console.log("Server is running on port 4000");
+app.listen(5000, () => {
+    console.log("Server is running on port 5000");
 })
 
