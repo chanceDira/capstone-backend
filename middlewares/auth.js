@@ -9,7 +9,7 @@ const authentication = async (req , res , next) => {
         next();
     } catch (error) {
         res.status(401).json({"error":"Access denied , please try again" });
-    }
+    }git
 }
 
 export default authentication
