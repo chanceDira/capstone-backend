@@ -24,3 +24,5 @@ app.listen(7700, () => {
     console.log("Server is running on port 7700");
 })
 
+export default app
+
