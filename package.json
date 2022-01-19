@@ -5,7 +5,7 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha --timeout 50000 --exit",
+    "test": "nyc --reporter=html --reporter=text mocha --timeout 50000 --exit --covarage",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "YOURPACKAGE_COVERAGE=1 ./node_modules/.bin/mocha test -R mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js"
   },
