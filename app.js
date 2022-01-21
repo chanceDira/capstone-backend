@@ -9,6 +9,8 @@ import auth from './routes/auth/authentication.js'
 // const express = require("express");
 // const users = require('./routes/users/users');
 // const admin = require('./routes/admin/admin');
+
+const PORT = process.env.PORT || 8000;
 const app = express();
 
 const options = {
@@ -21,7 +23,7 @@ const options = {
        },
        servers: [
         {
-           url: 'http://localhost:8000/api/v1'
+           url: `http://localhost:${PORT}/api/v1`
         
         }],  
    },
@@ -43,8 +45,8 @@ app.use('/api/v1/admin', admin);
 app.use('/api/v1/users', users);
 app.use('/api/v1/authentication', auth);
 
-app.listen(8000, () => {
-    console.log("Server is running on port 8000");
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 })
 
 export default app
