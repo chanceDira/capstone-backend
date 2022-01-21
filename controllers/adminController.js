@@ -34,6 +34,20 @@ const getBlogs = async (req,res) => {
     }
 }
 
+const singleBlog = async (req,res) => {
+    // res.json(blogs);
+    
+    let id = req.query.id;
+    try {  
+       const data = await Blogs.find({_id : id}).limit(4);
+        res.status(200).json(data);
+    }
+    catch(error){
+        console.log(error)
+        res.status(500).json({"message" : "Error"});
+    }
+}
+
 const deleteBlogPost = async (req , res) => {
     try {
         let id = req.body.id;
@@ -74,4 +88,4 @@ const updateBlogPost = async (req , res) => {
     }
 }
 
-export default { getBlogs, createNewBlogPost, deleteBlogPost, updateBlogPost }
+export default { getBlogs, createNewBlogPost, deleteBlogPost, updateBlogPost, singleBlog }

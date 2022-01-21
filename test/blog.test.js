@@ -7,7 +7,7 @@ import chai, { expect } from 'chai'
 import chaiHttp from 'chai-http'
 import app from '../app.js'
 // import jwt from 'jsonwebtoken'
-let should = chai.should();
+// let should = chai.should();
 // import dotenv from 'dotenv';
 // dotenv.config();
 
@@ -25,8 +25,17 @@ describe('1) Testing my Dashboard', () => {
       });
     }) 
 
+    it('it should GET single blog post', (done) => {
+      chai.request(app)
+      .get('/api/v1/admin/blogpost?id=61e5a3272a2beb128a3a00d6')
+      .end((err, res) => {
+            res.should.have.status(200);
+        done();
+      });
+    }) 
+
     it('Created new blog post', (done) => {
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWU3YmFiYTUyMWIwZjFlMTllM2NlOGMiLCJpYXQiOjE2NDI1NzY3Mzl9.sRhehyvEpqqQyYGrv9IN3zWpO4teX3qzyvLEyoY66Ys"
+      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWU3YmFiYTUyMWIwZjFlMTllM2NlOGMiLCJpYXQiOjE2NDI1OTEwNDZ9.RzP_BkiXT08LCwbFxKtt6O2sKAwjLaZw5WwuGWImP2U"
       chai.request(app).post('/api/v1/admin/newBlog')
         .set({ 'token': token, Accept: 'application/json' })
         .send({
@@ -47,7 +56,7 @@ describe('1) Testing my Dashboard', () => {
 
 
     it('blog post deleted', (done) => {
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWU3YmFiYTUyMWIwZjFlMTllM2NlOGMiLCJpYXQiOjE2NDI1NzY3Mzl9.sRhehyvEpqqQyYGrv9IN3zWpO4teX3qzyvLEyoY66Ys"
+      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWU3YmFiYTUyMWIwZjFlMTllM2NlOGMiLCJpYXQiOjE2NDI1OTEwNDZ9.RzP_BkiXT08LCwbFxKtt6O2sKAwjLaZw5WwuGWImP2U"
       chai.request(app).delete('/api/v1/admin/deleteblog')
         .set({ 'token': token, Accept: 'application/json' })
         .send({
@@ -62,7 +71,7 @@ describe('1) Testing my Dashboard', () => {
     })
 
     it('blog post updated', (done) => {
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWU3YmFiYTUyMWIwZjFlMTllM2NlOGMiLCJpYXQiOjE2NDI1NzY3Mzl9.sRhehyvEpqqQyYGrv9IN3zWpO4teX3qzyvLEyoY66Ys"
+      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWU3YmFiYTUyMWIwZjFlMTllM2NlOGMiLCJpYXQiOjE2NDI1OTEwNDZ9.RzP_BkiXT08LCwbFxKtt6O2sKAwjLaZw5WwuGWImP2U"
       chai.request(app).put('/api/v1/admin/updateblog')
         .set({ 'token': token, Accept: 'application/json' })
         .send({
@@ -123,7 +132,9 @@ describe('2) Testing my users', () => {
   })
 
   it('Comment posted.', (done) => {
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWU3YmFiYTUyMWIwZjFlMTllM2NlOGMiLCJpYXQiOjE2NDI1OTEwNDZ9.RzP_BkiXT08LCwbFxKtt6O2sKAwjLaZw5WwuGWImP2U"
     chai.request(app).post('/api/v1/users/newcomment')
+      .set({ 'token': token, Accept: 'application/json' })
       .send({
         "fullName": "Willy shema",
         "email": "willy@gmail.com",

@@ -4,9 +4,173 @@ import authentication from "../../middlewares/auth.js";
 
 const router = express.Router();
 
+/** 
+* @swagger
+ * components:
+ *   schemas:
+ *     Dashboard:
+ *       type: object
+ *       required:
+ *         - authorId
+ *         - blogImage
+ *         - title
+ *         - subTitle
+ *         - blogPost
+ *       properties:
+ *         authorId:
+ *           type: string
+ *           description: Author ID
+ *         blogImage:
+ *           type: string
+ *           description: Image of the blog
+ *         title:
+ *           type: string
+ *           description: title of the blog
+ *         subTitle:
+ *           type: string
+ *           description: blog subtitle
+ *         blogPost:
+ *           type: string
+ *           description: contents of the blog
+ *       example:
+ *         authorId: d5fE_aszhjgggggbjasgj989870
+ *         blogImage: png/jpeg
+ *         title: how to learn css
+ *         subTitle: types of css
+ *         blogPost: Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without
+ *         
+ */
+
+//get blogpost
+
+/**
+ * @swagger
+ * /admin:
+ *   get:
+ *     summary: Returns all blogs
+ *     tags: [Dashboard]
+ *     responses:
+ *       200:
+ *         description: The list of the Blogposts
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Dashboard'
+ */
 router.get('/', adminController.getBlogs);
+
+/**
+ * @swagger
+ * /admin/blogpost?id=61e5a3272a2beb128a3a00d6:
+ *   get:
+ *     summary: Returns single blog post
+ *     tags: [Dashboard]
+ *     responses:
+ *       200:
+ *         description: Details for single Blogpost
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Dashboard'
+ *       404:
+ *         description: The Blog post was not found
+ */
+
+router.get('/blogpost', adminController.singleBlog);
+
+/**
+ * @swagger
+ * /blogs:
+ *   post:
+ *     summary: Create a new Blog
+ *     tags: [Dashboard]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Blog'
+ *     responses:
+ *       200:
+ *         description: The Blog was successfully created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Blog'
+ *       500:
+ *         description: Some server error
+ */
 router.post('/newblog', authentication, adminController.createNewBlogPost);
+
+/**
+ * @swagger
+ * /blogs/{id}:
+ *  delete:
+ *    summary: Update the Blog by the id
+ *    tags: [Dashboard]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The Blog id
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/Blog'
+ *    responses:
+ *      200:
+ *        description: The Blog was updated
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Blog'
+ *      404:
+ *        description: The Blog was not found
+ *      500:
+ *        description: Some error happened
+ */
 router.delete('/deleteblog', authentication, adminController.deleteBlogPost);
+
+/**
+ * @swagger
+ * /blogs/{id}:
+ *  put:
+ *    summary: Update the Blog by the id
+ *    tags: [Dashboard]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The Blog id
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/Blog'
+ *    responses:
+ *      200:
+ *        description: The Blog was updated
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Blog'
+ *      404:
+ *        description: The Blog was not found
+ *      500:
+ *        description: Some error happened
+ */
+
 router.put('/updateblog', authentication, adminController.updateBlogPost);
 
 export default router
