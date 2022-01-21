@@ -23,7 +23,7 @@ const options = {
        },
        servers: [
         {
-           url: `http://localhost:${PORT}/api/v1`
+           url: `https://capstone-backend-andela.herokuapp.com`
         
         }],  
    },
