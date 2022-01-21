@@ -45,7 +45,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /admin:
+ * /api/v1/admin:
  *   get:
  *     summary: Returns all blogs
  *     tags: [Dashboard]
@@ -63,7 +63,7 @@ router.get('/', adminController.getBlogs);
 
 /**
  * @swagger
- * /admin/blogpost?id=61e5a3272a2beb128a3a00d6:
+ * /api/v1/admin/blogpost?id=61e5a3272a2beb128a3a00d6:
  *   get:
  *     summary: Returns single blog post
  *     tags: [Dashboard]

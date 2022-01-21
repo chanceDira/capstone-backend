@@ -78,7 +78,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /users:
+ * /api/v1/users:
  *   get:
  *     summary: Returns all blogs
  *     tags: [Users/Clients]
