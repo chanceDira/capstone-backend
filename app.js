@@ -10,7 +10,7 @@ import auth from './routes/auth/authentication.js'
 // const users = require('./routes/users/users');
 // const admin = require('./routes/admin/admin');
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 7000;
 const app = express();
 
 const options = {
@@ -23,10 +23,27 @@ const options = {
        },
        servers: [
         {
-           url: `https://capstone-backend-andela.herokuapp.com`
+        //    url: `https://capstone-backend-andela.herokuapp.com`,
+           url: 'http://localhost:7000/api/v1'
         
-        }],  
+        }], 
+        components: {
+          securitySchemes: {
+            bearerAuth: {
+              type: 'http',
+              scheme: 'bearer',
+              in: 'header',
+              bearerFormat: 'JWT'
+            }
+          }
+        },
+        security: [
+          {
+            bearerAuth: []
+          }
+        ], 
    },
+  
    apis: ["./routes/admin/*.js", './routes/users/*.js','./routes/auth/*.js']     
 }
 //'./routes/users/*.js','./routes/auth/*.js

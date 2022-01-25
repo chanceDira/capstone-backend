@@ -75,7 +75,7 @@ describe('1) Testing my Dashboard', () => {
       chai.request(app).put('/api/v1/admin/updateblog')
         .set({ 'token': token, Accept: 'application/json' })
         .send({
-          id: "61e7bd71521b0f1e19e3ce90",
+          id: "61eaa6dccd4ada1cbf46cf34",
           blogImage: "https://cdn.pixabay.com/photo/2016/11/23/14/45/coding-1853305_960_720.jpg",
           title: "The best technologies to learn in 2022. from zero to hero testing",
           subTitle: "nodejs, reactjs, and mocha",

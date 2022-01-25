@@ -5,7 +5,7 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "test": "nyc --reporter=html --reporter=text mocha --timeout 50000 --coverage --all --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "YOURPACKAGE_COVERAGE=1 ./node_modules/.bin/mocha test -R mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js"

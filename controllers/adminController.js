@@ -13,7 +13,7 @@ const createNewBlogPost = async (req , res) => {
             return;
         }     
         await Blogs.insertMany([ newBlogPost ]);
-        res.status(200).json({"message": "Blog post created !!", "data": newBlogPost});
+        res.status(200).json({"status": "success","code": 200,"message": "Blog post created !!", "data": newBlogPost});
     }
     catch(error){
         console.log(error)
@@ -25,7 +25,7 @@ const getBlogs = async (req,res) => {
     // res.json(blogs);
     
     try {  
-       const data = await Blogs.find({}).limit(4);
+       const data = await Blogs.find({}).limit(14);
         res.status(200).json(data);
     }
     catch(error){

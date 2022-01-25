@@ -45,7 +45,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/v1/admin:
+ * /admin:
  *   get:
  *     summary: Returns all blogs
  *     tags: [Dashboard]
@@ -63,10 +63,17 @@ router.get('/', adminController.getBlogs);
 
 /**
  * @swagger
- * /api/v1/admin/blogpost?id=61e5a3272a2beb128a3a00d6:
+ * /admin/blogpost?id={id}:
  *   get:
  *     summary: Returns single blog post
  *     tags: [Dashboard]
+ *     parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: Id of the single blog post    
  *     responses:
  *       200:
  *         description: Details for single Blogpost
@@ -84,23 +91,30 @@ router.get('/blogpost', adminController.singleBlog);
 
 /**
  * @swagger
- * /blogs:
+ * /admin/newblog:
  *   post:
  *     summary: Create a new Blog
  *     tags: [Dashboard]
+ *     parameters:
+ *      - in: header
+ *        name: token
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: Auth-token 
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Blog'
+ *             $ref: '#/components/schemas/Dashboard'
  *     responses:
  *       200:
  *         description: The Blog was successfully created
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Blog'
+ *               $ref: '#/components/schemas/Dashboard'
  *       500:
  *         description: Some server error
  */
