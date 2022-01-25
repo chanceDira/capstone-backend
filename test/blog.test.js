@@ -55,20 +55,20 @@ describe('1) Testing my Dashboard', () => {
     })
 
 
-    it('blog post deleted', (done) => {
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWU3YmFiYTUyMWIwZjFlMTllM2NlOGMiLCJpYXQiOjE2NDI1OTEwNDZ9.RzP_BkiXT08LCwbFxKtt6O2sKAwjLaZw5WwuGWImP2U"
-      chai.request(app).delete('/api/v1/admin/deleteblog')
-        .set({ 'token': token, Accept: 'application/json' })
-        .send({
-          id: "61e5277d65bc8f09b7d8f7cb",
-        })
-        .then((res) => {
-          const body = res.body;
-          expect(body).to.contain.property('success');
-          done();
-        })
-        .catch((err) => done(err))
-    })
+    // it('blog post deleted', (done) => {
+    //   const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWU3YmFiYTUyMWIwZjFlMTllM2NlOGMiLCJpYXQiOjE2NDI1OTEwNDZ9.RzP_BkiXT08LCwbFxKtt6O2sKAwjLaZw5WwuGWImP2U"
+    //   chai.request(app).delete('/api/v1/admin/deleteblog')
+    //     .set({ 'token': token, Accept: 'application/json' })
+    //     .send({
+    //       id: "61e5277d65bc8f09b7d8f7cb",
+    //     })
+    //     .then((res) => {
+    //       const body = res.body;
+    //       expect(body).to.contain.property('success');
+    //       done();
+    //     })
+    //     .catch((err) => done(err))
+    // })
 
     it('blog post updated', (done) => {
       const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWU3YmFiYTUyMWIwZjFlMTllM2NlOGMiLCJpYXQiOjE2NDI1OTEwNDZ9.RzP_BkiXT08LCwbFxKtt6O2sKAwjLaZw5WwuGWImP2U"
