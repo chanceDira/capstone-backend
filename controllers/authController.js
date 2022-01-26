@@ -12,7 +12,7 @@ const register = async (req , res) => {
     try {
         // validations
         if(!(password || fullName || email)){
-            res.status(400).json({'message' : "Please fill all required data"});
+            res.status(400).json({'status': 'fail','code': 400,'message' : "Please fill all required data", "data": null});
             return;
         }   
         const salt = await bcrypt.genSalt(10);
@@ -23,11 +23,11 @@ const register = async (req , res) => {
                 email 
             });
         const savedData = await saveData.save();  
-        res.status(200).json({"message": "Registered !!!", "data": savedData});
+        res.status(200).json({'status': 'success','code': 200,'message' : "Registered !!!", "data": null});
     }
     catch(error){
         console.log(error)
-        res.status(500).json({"message" : "Error"});
+        res.status(500).json({'status': 'fail','code': 500,'message' : "error", "data": null});
     }
 }
 
@@ -35,15 +35,15 @@ const login = async (req , res) => {
     const { email, password  } =  req.body;
     try {  
         const emailExist = await users.findOne({email : email});
-        if(!emailExist) return res.status(400).json({"error":"Emil not found."});
+        if(!emailExist) return res.status(400).json({'status': 'fail','code': 400,'message' : "email not found", "data": null});
         const passwordMatch = await bcrypt.compare(password,emailExist.password);
-        if(!passwordMatch) return res.status(401).json({"error":"Incorrect password"});
+        if(!passwordMatch) return res.status(401).json({'status': 'fail','code': 401,'message' : "incorrect password", "data": null});
         // setting token
         const token = jwt.sign({_id : emailExist._id},process.env.USER_TOKEN);
-        res.header('auth-token',token).status(200).json({"message" : "user logged in" , "token" : token });
+        res.header('auth-token',token).status(200).json({'status': 'success','code': 200,'message' : "user logged in", "data": {"token" : token }});
     } catch (error) {    
         console.log(error)
-        res.status(500).json({"error":"error"});    
+        res.status(500).json({'status': 'fail','code': 500,'message' : "error", "data": null});    
     }
 }
 

@@ -38,7 +38,7 @@ const router = express.Router();
  *         title: how to learn css
  *         subTitle: types of css
  *         blogPost: Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without
- *         
+ *        
  */
 
 //get blogpost
@@ -122,30 +122,30 @@ router.post('/newblog', authentication, adminController.createNewBlogPost);
 
 /**
  * @swagger
- * /blogs/{id}:
+ * /admin/deleteblog:
  *  delete:
- *    summary: Update the Blog by the id
+ *    summary: Delete a blog post
  *    tags: [Dashboard]
  *    parameters:
- *      - in: path
- *        name: id
+ *      - in: header
+ *        name: token
  *        schema:
  *          type: string
  *        required: true
- *        description: The Blog id
+ *        description: Auth-token
  *    requestBody:
  *      required: true
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/Blog'
+ *            $ref: '#/components/schemas/Dashboard'
  *    responses:
  *      200:
  *        description: The Blog was updated
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/Blog'
+ *              $ref: '#/components/schemas/Dashboard'
  *      404:
  *        description: The Blog was not found
  *      500:
@@ -155,30 +155,30 @@ router.delete('/deleteblog', authentication, adminController.deleteBlogPost);
 
 /**
  * @swagger
- * /blogs/{id}:
+ * /admin/updateblog:
  *  put:
- *    summary: Update the Blog by the id
+ *    summary: Update a blog post
  *    tags: [Dashboard]
  *    parameters:
- *      - in: path
- *        name: id
+ *      - in: header
+ *        name: token
  *        schema:
  *          type: string
  *        required: true
- *        description: The Blog id
+ *        description: Auth-token
  *    requestBody:
  *      required: true
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/Blog'
+ *            $ref: '#/components/schemas/Dashboard'
  *    responses:
  *      200:
  *        description: The Blog was updated
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/Blog'
+ *              $ref: '#/components/schemas/Dashboard'
  *      404:
  *        description: The Blog was not found
  *      500:

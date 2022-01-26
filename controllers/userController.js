@@ -12,7 +12,7 @@ const newMessage = async (req , res) => {
     try {
         // validations
         if(!(message || fullName || email)){
-            res.status(400).json({'message' : "Please fill all required data"});
+            res.status(400).json({'status': 'fail','code': 400,'message' : "Please fill all required data", "data": null});
             return;
         }     
         const saveData = new contacts({
@@ -21,7 +21,7 @@ const newMessage = async (req , res) => {
                 email 
             });
         const savedData = await saveData.save();  
-        res.status(200).json({"message": "Message sent !!!", "data": savedData});
+        res.status(200).json({'status': 'success','code': 200,'message' : "Message sent !!!", "data": {"contact": savedData}});
     }
     catch(error){
         console.log(error)
