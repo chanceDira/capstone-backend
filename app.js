@@ -1,5 +1,6 @@
 import express from "express";
 import bodyParser from 'body-parser'
+import cors from 'cors'
 import swaggerUI from 'swagger-ui-express'
 import swaggerJsDoc from "swagger-jsdoc";
 import users from './routes/users/users.js';
@@ -12,6 +13,7 @@ import auth from './routes/auth/authentication.js'
 
 const PORT = process.env.PORT || 7000;
 const app = express();
+app.use(cors)
 
 const options = {
    definition: {
