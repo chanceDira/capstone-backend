@@ -13,7 +13,7 @@ import auth from './routes/auth/authentication.js'
 
 const PORT = process.env.PORT || 7000;
 const app = express();
-app.use(cors)
+app.use(cors())
 
 const options = {
    definition: {
