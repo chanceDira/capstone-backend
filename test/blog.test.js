@@ -83,7 +83,10 @@ describe('1) Testing my Dashboard', () => {
         })
         .then((res) => {
           const body = res.body;
-          expect(body).to.contain.property('success');
+          expect(body).to.contain.property('status');
+          expect(body).to.contain.property('code');
+          expect(body).to.contain.property('message');
+          expect(body).to.contain.property('data');
           done();
         })
         .catch((err) => done(err))
@@ -176,8 +179,10 @@ describe('3) Testing authentication', () => {
       })
       .then((res) => {
         const body = res.body;
-        expect(body).to.contain.property('token');
+        expect(body).to.contain.property('status');
+        expect(body).to.contain.property('code');
         expect(body).to.contain.property('message');
+        expect(body).to.contain.property('data');
         done();
       })
       .catch((err) => done(err))
