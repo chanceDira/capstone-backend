@@ -25,7 +25,7 @@ const options = {
        },
        servers: [
         {
-           url: `https://capstone-backend-andela.herokuapp.com`,
+           url: `https://capstone-backend-andela.herokuapp.com/api/v1`,
           //  url: 'http://localhost:7000/api/v1'
         
         }], 
