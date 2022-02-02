@@ -5,7 +5,10 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "test": "nyc --reporter=html --reporter=text mocha --timeout 50000 --coverage --all --exit",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "coveralls": "YOURPACKAGE_COVERAGE=1 ./node_modules/.bin/mocha test -R mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js"
   },
   "repository": {
     "type": "git",
@@ -20,8 +23,19 @@
   "dependencies": {
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.7",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.1",
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^11.0.0",
     "express": "^4.17.2",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^9.1.4",
+    "mongoose": "^6.1.6",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.3.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -29,6 +43,9 @@
     "@babel/plugin-transform-runtime": "^7.16.8",
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.16.8",
-    "@babel/runtime": "^7.16.7"
+    "@babel/runtime": "^7.16.7",
+    "coverage": "^0.4.1",
+    "coveralls": "^3.1.1",
+    "nyc": "^15.1.0"
   }
 }
