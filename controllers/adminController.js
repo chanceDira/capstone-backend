@@ -25,7 +25,7 @@ const getBlogs = async (req,res) => {
     // res.json(blogs);
     
     try {  
-       const data = await Blogs.find({}).limit(14);
+       const data = await Blogs.find({}).sort({ _id: -1 }).limit(14);
         res.status(200).json({"status": "success","code": 200,"message": "All Blog posts", "data": {"posts": data}});
     }
     catch(error){
