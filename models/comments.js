@@ -2,6 +2,10 @@ import mongoose from 'mongoose'
 
 const commentSchema = new mongoose.Schema({
 
+    postId: {
+        type: String,
+        required: 'postId is required'
+    },
     fullName: {
         type: String,
         required: 'Full Name is required'

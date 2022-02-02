@@ -51,20 +51,21 @@ const newsLetterEmail = async (req , res) => {
 }
 
 const newComment = async (req , res) => {
-    const { comment, fullName, email } =  req.body;
+    const { comment, fullName, email, postId } =  req.body;
     try {
         // validations
-        if(!(comment || fullName || email)){
+        if(!(comment || fullName || email || postId)){
             res.status(400).json({'message' : "Please fill all required data"});
             return;
         }     
         const saveData = new comments({
                 comment,
                 fullName,
-                email 
+                email,
+                postId 
             });
         const savedData = await saveData.save();  
-        res.status(200).json({"message": "Comment posted !!", "data": savedData});
+        res.status(200).json({"status": "success","code": 200,"message": "Comment posted !!", "data": {"post": savedData}});
     }
     catch(error){
         console.log(error)
@@ -77,7 +78,7 @@ const getComments = async (req,res) => {
     
     try {  
        const data = await comments.find({}).limit(4);
-        res.status(200).json(data);
+        res.status(200).json({"status": "success","code": 200,"message": "All comments", "data": {"posts": data}});
     }
     catch(error){
         console.log(error)
