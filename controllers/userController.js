@@ -77,7 +77,7 @@ const getComments = async (req,res) => {
     // res.json(blogs);
     
     try {  
-       const data = await comments.find({}).limit(4);
+       const data = await comments.find({postId: req.body.postId}).limit(req.body.limit?req.body.limit:4);
         res.status(200).json({"status": "success","code": 200,"message": "All comments", "data": {"posts": data}});
     }
     catch(error){
